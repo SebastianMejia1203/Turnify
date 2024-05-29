@@ -1,0 +1,13 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const torneos_1 = require("../controllers/torneos");
+const router = (0, express_1.Router)();
+router.get('/', torneos_1.getTorneo);
+router.get('/popularidad', torneos_1.torneoMayorPopularidad);
+router.get('/recientes', torneos_1.torneoReciente);
+router.get('/filtrar/:nombreJuego?/:ordenamiento?', torneos_1.FiltrarTorneos);
+router.get('/listaTorneos', torneos_1.listaTorneos);
+router.get('/personal', torneos_1.personalTorneo);
+router.get('/misTorneos/:id', torneos_1.misTorneos);
+exports.default = router;

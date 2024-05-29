@@ -1,0 +1,21 @@
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const usuario_1 = require("../controllers/usuario");
+const validateToken_1 = __importDefault(require("./validateToken"));
+const router = (0, express_1.Router)();
+router.post('/', usuario_1.register);
+router.post('/login', usuario_1.login);
+// router.get('/miPerfil', miPerfil);
+router.get('/miPerfil', validateToken_1.default, usuario_1.miPerfil);
+router.get('/', usuario_1.obtenerUsuarios);
+router.get('/:id', usuario_1.obtenerUsuario);
+router.put('/:id', usuario_1.actualizarUsuario);
+router.put('/inabilitar/:id', usuario_1.cambiarEstadoUsuario);
+router.delete('/:id', usuario_1.eliminarUsuario);
+router.get('/baneado/:id', usuario_1.esUsuarioBaneado);
+router.post('/banear/', usuario_1.banearUsuario);
+exports.default = router;
